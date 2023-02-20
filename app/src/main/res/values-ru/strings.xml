@@ -55,7 +55,7 @@
     <string name="track_count">Количество композиций</string>
     <string name="album_count">Количество альбомов</string>
     <string name="artist_name">Имя исполнителя</string>
-    <string name="year">Год</string>
+    <string name="year">Дата</string>
     <string name="track_number">Номер композиции</string>
     <string name="use_for_this_playlist">Использовать только для этого списка воспроизведения</string>
     <string name="use_for_this_album">Использовать только для этого альбома</string>

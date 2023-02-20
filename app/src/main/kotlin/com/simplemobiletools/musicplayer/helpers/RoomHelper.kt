@@ -32,7 +32,8 @@ class RoomHelper(val context: Context) {
             Audio.Media.DATA,
             Audio.Media.DURATION,
             Audio.Media.ALBUM,
-            Audio.Media.ALBUM_ID
+            Audio.Media.ALBUM_ID,
+            Audio.Media.DATE_ADDED
         )
 
         if (isQPlus()) {
@@ -67,8 +68,9 @@ class RoomHelper(val context: Context) {
                 } else {
                     ""
                 }
+                val date_added = cursor.getIntValue(Audio.Media.DATE_ADDED)
 
-                val song = Track(0, mediaStoreId, title, artist, path, duration, album, coverArt, playlistId, 0, folderName, albumId, 0)
+                val song = Track(0, mediaStoreId, title, artist, path, duration, album, coverArt, playlistId, 0, folderName, albumId, 0, date_added)
                 song.title = song.getProperTitle(showFilename)
                 songs.add(song)
                 pathsMap.remove(path)
@@ -78,7 +80,7 @@ class RoomHelper(val context: Context) {
         pathsMap.forEach {
             val unknown = MediaStore.UNKNOWN_STRING
             val title = context.getTitle(it) ?: unknown
-            val song = Track(0, 0, title, context.getArtist(it) ?: unknown, it, context.getDuration(it) ?: 0, "", "", playlistId, 0, "", 0, 0)
+            val song = Track(0, 0, title, context.getArtist(it) ?: unknown, it, context.getDuration(it) ?: 0, "", "", playlistId, 0, "", 0, 0, 0)
             song.title = song.getProperTitle(showFilename)
             songs.add(song)
         }

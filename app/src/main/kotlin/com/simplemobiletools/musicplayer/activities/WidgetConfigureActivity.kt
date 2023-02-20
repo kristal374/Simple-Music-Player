@@ -58,9 +58,9 @@ class WidgetConfigureActivity : SimpleActivity() {
             song_info_artist.text = getString(R.string.song_title)
         }
 
-        if (!isCustomizingColors && !isOrWasThankYouInstalled()) {
+        if (isCustomizingColors) {
             mFeatureLockedDialog = FeatureLockedDialog(this) {
-                if (!isOrWasThankYouInstalled()) {
+                if (!true) {
                     finish()
                 }
             }
@@ -69,7 +69,7 @@ class WidgetConfigureActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (mFeatureLockedDialog != null && isOrWasThankYouInstalled()) {
+        if (mFeatureLockedDialog != null && true) {
             mFeatureLockedDialog?.dismissDialog()
         }
     }

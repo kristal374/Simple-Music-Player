@@ -178,7 +178,8 @@ fun Context.getAlbumTracksSync(albumId: Long): ArrayList<Track> {
         Audio.Media.TITLE,
         Audio.Media.ARTIST,
         Audio.Media.ALBUM,
-        Audio.Media.TRACK
+        Audio.Media.TRACK,
+        Audio.Media.DATE_ADDED
     )
 
     if (isQPlus()) {
@@ -204,8 +205,9 @@ fun Context.getAlbumTracksSync(albumId: Long): ArrayList<Track> {
         } else {
             ""
         }
+        val date_added = cursor.getIntValue(Audio.Media.DATE_ADDED)
 
-        val track = Track(0, id, title, artist, path, duration, album, coverArt, 0, trackId, folderName, albumId, 0)
+        val track = Track(0, id, title, artist, path, duration, album, coverArt, 0, trackId, folderName, albumId, 0, date_added)
         track.title = track.getProperTitle(showFilename)
         tracks.add(track)
     }

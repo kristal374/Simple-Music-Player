@@ -26,7 +26,8 @@ data class Track(
     @ColumnInfo(name = "track_id") val trackId: Int,  // order id within the tracks' album
     @ColumnInfo(name = "folder_name") var folderName: String,
     @ColumnInfo(name = "album_id") val albumId: Long,
-    @ColumnInfo(name = "order_in_playlist") var orderInPlaylist: Int
+    @ColumnInfo(name = "order_in_playlist") var orderInPlaylist: Int,
+    @ColumnInfo(name = "date") var _date: Int
 ) : Serializable, Comparable<Track>, ListItem() {
 
     companion object {
@@ -60,13 +61,15 @@ data class Track(
             sorting and PLAYER_SORT_BY_CUSTOM != 0 -> {
                 orderInPlaylist.compareTo(other.orderInPlaylist)
             }
+            sorting and PLAYER_SORT_BY_YEAR != 0 -> {
+                _date.compareTo(other._date)
+            }
             else -> duration.compareTo(other.duration)
         }
 
         if (sorting and SORT_DESCENDING != 0) {
             res *= -1
         }
-
         return res
     }
 
